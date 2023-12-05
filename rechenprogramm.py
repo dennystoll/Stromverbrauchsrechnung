@@ -1,7 +1,7 @@
 import json
 
 def neue_verbrauchsdaten():
-    with open("/home/dennstoll/code/Stromverbrauch/daten.json", "r")as datei:
+    with open("C:/datei/pfad/daten.json", "r")as datei:
         daten = json.load(datei)
         neuverbrauch = daten["neuverbrauch"]
     while True:
@@ -76,7 +76,7 @@ def neue_verbrauchsdaten():
     return neuer_verbrauch
 
 def daten_überschreibung(neuer_verbrauch):
-    with open("/home/dennstoll/code/Stromverbrauch/daten.json", "r")as datei:
+    with open("C:/datei/pfad/daten.json", "r")as datei:
         daten = json.load(datei)
         if neuer_verbraucher == 1:
             addition = daten["neuverbrauch"]
@@ -87,12 +87,12 @@ def daten_überschreibung(neuer_verbrauch):
             daten["altverbrauch"] = daten["neuverbrauch"]
         daten["neuverbrauch"] = neuer_verbrauch 
 
-    with open("/home/dennstoll/code/Stromverbrauch/daten.json", "w")as f:
+    with open("C:/datei/pfad/daten.json", "w")as f:
         json.dump(daten, f, indent = 4)
 
 def rechnung():
 
-    with open("/home/dennstoll/code/Stromverbrauch/daten.json", "r")as datei:
+    with open("C:/datei/pfad/daten.json", "r")as datei:
         daten = json.load(datei)
         mtl_verb = (daten["neuverbrauch"]["Haptz\u00e4hler"]) - (daten["altverbrauch"]["Haptz\u00e4hler"])
         einz_alt_verb = []
