@@ -134,7 +134,7 @@ def rechnung():
                 continue
             else:
                 verb_in_proz = ((verbrauch - altverbrauch[familie])/mtl_verb) * 100
-                einz_endsumme = (((verbrauch - altverbrauch[familie]) + ((rest/100) * verb_in_proz) *1.1)*310)
+                einz_endsumme = ((((verbrauch - altverbrauch[familie]) + ((rest/100) * verb_in_proz)) *1.1)*310)
                 einz_verb_in_proz[familie] = round(verb_in_proz, 1)
                 einz_endsummen[familie] = round(einz_endsumme)
                 einz_verbrauch[familie] = (verbrauch - altverbrauch[familie])
