@@ -118,6 +118,8 @@ def rechnung():
     einz_endsummen = {}
     endsumme = 0
     einz_verbrauch = {}
+    comission = 14000/len(daten["neuverbrauch"])
+
 
     if mtl_verb < tarif:
 
@@ -127,14 +129,14 @@ def rechnung():
             if zähler == hauptzähler:
                 hauptzähler = verbrauch
                 stoll_verb_in_proz = (stoll_verb/mtl_verb) * 100
-                stoll_endsumme = (((stoll_verb + ((rest/100) * stoll_verb_in_proz)) *1.1) *310) 
+                stoll_endsumme = (((stoll_verb + ((rest/100) * stoll_verb_in_proz)) *1.1) *310+comission)
                 einz_verb_in_proz["Stoll"] = round(stoll_verb_in_proz, 1)
                 einz_endsummen["Stoll"] = round(stoll_endsumme)
                 einz_verbrauch["Stoll"] = stoll_verb
                 continue
             else:
                 verb_in_proz = ((verbrauch - altverbrauch[familie])/mtl_verb) * 100
-                einz_endsumme = ((((verbrauch - altverbrauch[familie]) + ((rest/100) * verb_in_proz)) *1.1)*310)
+                einz_endsumme = ((((verbrauch - altverbrauch[familie]) + ((rest/100) * verb_in_proz)) *1.1)*310+comission)
                 einz_verb_in_proz[familie] = round(verb_in_proz, 1)
                 einz_endsummen[familie] = round(einz_endsumme)
                 einz_verbrauch[familie] = (verbrauch - altverbrauch[familie])
@@ -145,12 +147,12 @@ def rechnung():
         for familie, verbrauch in neuverbrauch.items():
             if zähler_0 == hauptzähler_0:
                 hauptzähler_0 = verbrauch
-                stoll_endsumme = ((stoll_verb * 1.1) * 310)
+                stoll_endsumme = ((stoll_verb * 1.1) * 310+comission)
                 einz_endsummen["Stoll"] = round(stoll_endsumme)
                 einz_verbrauch["Stoll"] = stoll_verb
                 continue
             else:
-                endsummen = (((verbrauch - altverbrauch[familie]) * 1.1) * 310)
+                endsummen = (((verbrauch - altverbrauch[familie]) * 1.1) * 310+comission)
                 einz_verbrauch[familie] = (verbrauch - altverbrauch[familie])
                 einz_endsummen[familie] = round(endsummen)
     for einzel_endsumme in einz_endsummen.values():
